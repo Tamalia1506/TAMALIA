@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TALIA - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #1a73e8, #64b5f6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            background: white;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .logo-text {
+            font-size: 72px;
+            font-weight: bold;
+            color: #1a73e8;
+            letter-spacing: 8px;
+            position: relative;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #1a73e8, 0 0 10px #1a73e8, 0 0 15px #64b5f6;
+            }
+            to {
+                text-shadow: 0 0 10px #1a73e8, 0 0 20px #1a73e8, 0 0 30px #64b5f6;
+            }
+        }
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .signin-signup {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            background: white;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .signin-signup.active {
+            transform: translateX(100%);
+        }
+
+        .form-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .input-field {
+            width: 100%;
+            max-width: 380px;
+            height: 55px;
+            background-color: #f0f0f0;
+            margin: 10px 0;
+            border-radius: 55px;
+            display: flex;
+            padding: 0 0.4rem;
+            position: relative;
+        }
+
+        .input-field i {
+            text-align: center;
+            line-height: 55px;
+            color: #acacac;
+            font-size: 1.1rem;
+            width: 50px;
+        }
+
+        .input-field input {
+            background: none;
+            outline: none;
+            border: none;
+            line-height: 1;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #333;
+            width: 100%;
+        }
+
+        .input-field input::placeholder {
+            color: #aaa;
+            font-weight: 500;
+        }
+
+        .btn {
+            width: 150px;
+            height: 49px;
+            border: none;
+            outline: none;
+            border-radius: 49px;
+            cursor: pointer;
+            background-color: #1a73e8;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.5s;
+        }
+
+        .btn:hover {
+            background-color: #1557b0;
+        }
+
+        .toggle-container {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .toggle-text {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: #1a73e8;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .social-text {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icon {
+            height: 45px;
+            width: 45px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #1a73e8;
+            border-color: #1a73e8;
+        }
+
+        /* Animasi untuk huruf TALIA */
+        .logo-text span {
+            display: inline-block;
+            animation: bounce 1s ease infinite;
+        }
+
+        .logo-text span:nth-child(1) { animation-delay: 0.1s; }
+        .logo-text span:nth-child(2) { animation-delay: 0.2s; }
+        .logo-text span:nth-child(3) { animation-delay: 0.3s; }
+        .logo-text span:nth-child(4) { animation-delay: 0.4s; }
+        .logo-text span:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-no {
+            background-color: #dc3545;
+        }
+
+        .btn-no:hover {
+            background-color: #c82333;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* Tambahkan style untuk loading */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #1a73e8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .signin-signup {
+            transition: opacity 0.3s ease;
+        }
+        
+        #question2 {
+            opacity: 0;
+        }
+        
+        #question2.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo-text">
+                <span>T</span>
+                <span>A</span>
+                <span>L</span>
+                <span>I</span>
+                <span>A</span>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div class="signin-signup" id="question1">
+                <h2 class="form-title">Apakah kamu pacar Wahyu?</h2>
+                <div class="btn-group">
+                    <button class="btn" onclick="answerYes()">Ya</button>
+                    <button class="btn btn-no" onclick="answerNo()">Tidak</button>
+                </div>
+            </div>
+
+            <div class="signin-signup active" id="question2">
+                <h2 class="form-title">Kapan tanggal jadian kalian?</h2>
+                <div class="input-field">
+                    <i class="fas fa-calendar"></i>
+                    <input type="text" id="dateInput" placeholder="DDMMYY" />
+                </div>
+                <button class="btn" onclick="checkDate()">Masuk</button>
+            </div>
+        </div>
+
+        <div class="toggle-container">
+            <p class="toggle-text">Sudah punya akun?</p>
+            <button class="toggle-btn" onclick="toggleForms()">Login di sini</button>
+        </div>
+    </div>
+
+    <!-- Tambahkan div loading -->
+    <div id="loading" class="loading" style="display: none;">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script>
+        let isLoginForm = true;
+
+        function toggleForms() {
+            const forms = document.querySelectorAll('.signin-signup');
+            const toggleText = document.querySelector('.toggle-text');
+            const toggleBtn = document.querySelector('.toggle-btn');
+
+            forms.forEach(form => form.classList.toggle('active'));
+            isLoginForm = !isLoginForm;
+
+            if (isLoginForm) {
+                toggleText.textContent = 'Sudah punya akun?';
+                toggleBtn.textContent = 'Login di sini';
+            } else {
+                toggleText.textContent = 'Belum punya akun?';
+                toggleBtn.textContent = 'Daftar di sini';
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function answerYes() {
+            const question1 = document.getElementById('question1');
+            const question2 = document.getElementById('question2');
+            const toggleContainer = document.querySelector('.toggle-container');
+
+            question1.style.opacity = '0';
+            setTimeout(() => {
+                question1.classList.add('active');
+                question2.classList.remove('active');
+                question2.style.opacity = '1';
+                toggleContainer.style.display = 'none';
+            }, 300);
+        }
+
+        function answerNo() {
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                const container = document.querySelector('.container');
+                container.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-heart-broken" style="font-size: 48px; margin-bottom: 20px;"></i>
+                        <p>INI HANYA BISA DI AKSES OLEH TAMA DAN LIA</p>
+                    </div>
+                `;
+            }, 1000);
+        }
+
+        function checkDate() {
+            const date = document.getElementById('dateInput').value;
+            if (date === '150624' || date === '1506') {
+                showLoading();
+                setTimeout(() => {
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        username: 'Lia',
+                        isLoggedIn: true,
+                        loginTime: new Date().getTime()
+                    }));
+                    
+                    setTimeout(() => {
+                        try {
+                            window.location.replace('./webpakeAI.html');
+                        } catch (e) {
+                            console.error('Redirect error:', e);
+                            hideLoading();
+                            alert('Terjadi kesalahan saat membuka halaman utama');
+                        }
+                    }, 1500);
+                }, 1500);
+            } else {
+                const input = document.getElementById('dateInput');
+                input.style.borderColor = '#dc3545';
+                input.value = '';
+                input.placeholder = 'Tanggal Salah!';
+                input.classList.add('shake');
+                setTimeout(() => {
+                    input.classList.remove('shake');
+                    input.placeholder = 'DDMMYY';
+                    input.style.borderColor = '';
+                }, 1000);
+            }
+        }
+
+        // Tambahkan event listener untuk input
+        document.getElementById('dateInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkDate();
+            }
+        });
+
+        // Modifikasi cek login
+        window.addEventListener('load', function() {
+            // Hapus auto redirect
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser && currentUser.isLoggedIn) {
+                const loginTime = currentUser.loginTime;
+                const now = new Date().getTime();
+                const hoursPassed = (now - loginTime) / (1000 * 60 * 60);
+                
+                if (hoursPassed > 24) {
+                    localStorage.removeItem('currentUser');
+                }
+            }
+        });
+
+        // Tambahkan fungsi untuk mencegah form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
